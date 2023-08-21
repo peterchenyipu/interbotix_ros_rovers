@@ -147,7 +147,7 @@ def generate_launch_description():
                 '"mobile_" + "', LaunchConfiguration('robot_model'), '".split("_")[1]'
             ]),
             description=(
-                'the Interbotix Arm model on the LoCoBot; this should never be set manually but '
+                'Generated as \'mobile_{second part of robot_model}\'the Interbotix Arm model on the LoCoBot; this should never be set manually but '
                 'rather left to its default value.'
             ),
         )
