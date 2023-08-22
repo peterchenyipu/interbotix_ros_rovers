@@ -22,7 +22,7 @@
         <visual>
             <geometry>
                 <!-- new mesh -->
-                <mesh filename="package://locobot_description/meshes/main_body.dae"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/main_body.dae"/>
             </geometry>
             <origin rpy="0 0 0" xyz="0.001 0 0.05199"/>
         </visual>
@@ -56,7 +56,7 @@
     <link name="wheel_left_link">
         <visual>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/wheel.dae"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/wheel.dae"/>
             </geometry>
             <origin rpy="0 0 0" xyz="0 0 0"/>
         </visual>
@@ -81,7 +81,7 @@
     <link name="wheel_right_link">
         <visual>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/wheel.dae"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/wheel.dae"/>
             </geometry>
             <origin rpy="0 0 0" xyz="0 0 0"/>
         </visual>
@@ -193,7 +193,7 @@
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/plate.STL"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/plate.STL"/>
             </geometry>
             <material name="">
                 <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
@@ -202,7 +202,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/plate.STL"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/plate.STL"/>
             </geometry>
         </collision>
     </link>
@@ -221,7 +221,7 @@
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/plate.STL"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/plate.STL"/>
             </geometry>
             <material name="">
                 <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
@@ -230,7 +230,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/plate.STL"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/plate.STL"/>
             </geometry>
         </collision>
     </link>
@@ -250,7 +250,7 @@
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/arm_base_link.STL"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/arm_base_link.STL"/>
             </geometry>
             <material name="">
                 <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
@@ -259,7 +259,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/arm_base_link.STL"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/arm_base_link.STL"/>
             </geometry>
         </collision>
     </link>
@@ -278,7 +278,7 @@
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/shoulder_link.STL"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/shoulder_link.STL"/>
             </geometry>
             <material name="">
                 <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
@@ -287,7 +287,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/shoulder_link.STL"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/shoulder_link.STL"/>
             </geometry>
         </collision>
     </link>
@@ -307,7 +307,7 @@
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/elbow_link.STL"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/elbow_link.STL"/>
             </geometry>
             <material name="">
                 <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
@@ -316,7 +316,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/elbow_link.STL"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/elbow_link.STL"/>
             </geometry>
         </collision>
     </link>
@@ -336,7 +336,7 @@
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/forearm_link.STL"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/forearm_link.STL"/>
             </geometry>
             <material name="">
                 <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
@@ -345,7 +345,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/forearm_link.STL"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/forearm_link.STL"/>
             </geometry>
         </collision>
     </link>
@@ -365,7 +365,7 @@
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/wrist_link.STL"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/wrist_link.STL"/>
             </geometry>
             <material name="">
                 <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
@@ -374,7 +374,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/wrist_link.STL"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/wrist_link.STL"/>
             </geometry>
         </collision>
     </link>
@@ -394,7 +394,7 @@
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/gripper_link.STL"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/gripper_link.STL"/>
             </geometry>
             <material name="">
                 <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
@@ -403,7 +403,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/gripper_link.STL"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/gripper_link.STL"/>
             </geometry>
         </collision>
     </link>
@@ -423,7 +423,7 @@
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/finger_r.STL"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/finger_r.STL"/>
             </geometry>
             <material name="">
                 <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
@@ -432,7 +432,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/finger_r.STL"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/finger_r.STL"/>
             </geometry>
         </collision>
     </link>
@@ -452,7 +452,7 @@
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/finger_l.STL"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/finger_l.STL"/>
             </geometry>
             <material name="">
                 <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
@@ -461,7 +461,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/finger_l.STL"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/finger_l.STL"/>
             </geometry>
         </collision>
     </link>
@@ -481,7 +481,7 @@
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/ar_tag.STL"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/ar_tag.STL"/>
             </geometry>
             <material name="">
                 <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
@@ -490,7 +490,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/ar_tag.STL"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/ar_tag.STL"/>
             </geometry>
         </collision>
     </link>
@@ -510,7 +510,7 @@
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/cam_mount.STL"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/cam_mount.STL"/>
             </geometry>
             <material name="">
                 <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
@@ -519,7 +519,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/cam_mount.STL"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/cam_mount.STL"/>
             </geometry>
         </collision>
     </link>
@@ -538,7 +538,7 @@
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/tilt_link.STL"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/tilt_link.STL"/>
             </geometry>
             <material name="">
                 <color rgba="0.250980392156863 0.250980392156863 0.250980392156863 1"/>
@@ -547,7 +547,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/tilt_link.STL"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/tilt_link.STL"/>
             </geometry>
         </collision>
     </link>
@@ -567,7 +567,7 @@
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/roll_link.STL"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/roll_link.STL"/>
             </geometry>
             <material name="">
                 <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
@@ -576,7 +576,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/roll_link.STL"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/roll_link.STL"/>
             </geometry>
         </collision>
     </link>
@@ -596,7 +596,7 @@
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/camera_link.STL"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/camera_link.STL"/>
             </geometry>
             <material name="">
                 <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
@@ -605,7 +605,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://locobot_description/meshes/camera_link.STL"/>
+                <mesh filename="package://interbotix_xslocobot_descriptions/meshes/cmu_locobot_meshes/camera_link.STL"/>
             </geometry>
         </collision>
     </link>
