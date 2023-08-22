@@ -7,12 +7,19 @@
 
       <joint name="arm_base_link_joint" type="fixed">
         <axis xyz="0 0 0"/>
-        <xacro:if value="${arm_type == 'mobile_px100'}">
-          <origin rpy="0 0 0" xyz="0.111126 0 0.0095"/>
-        </xacro:if> <!-- arm_type == 'mobile_px100' -->
-        <xacro:if value="${arm_type != 'mobile_px100'}">
-          <origin rpy="0 0 0" xyz="0.097277 0 0.0095"/>
-        </xacro:if> <!-- arm_type != 'mobile_px100' -->
+        <xacro:if value="${robot_model_var.startswith('locobotcmu')}">
+          <origin rpy="0 0 0" xyz="0 0 0.001"/>
+        </xacro:if> <!-- robot_model_var.startswith('locobotcmu') -->
+
+        <xacro:unless value="${robot_model_var.startswith('locobotcmu')}">
+          <xacro:if value="${arm_type == 'mobile_px100'}">
+            <origin rpy="0 0 0" xyz="0.111126 0 0.0095"/>
+          </xacro:if> <!-- arm_type == 'mobile_px100' -->
+          <xacro:if value="${arm_type != 'mobile_px100'}">
+            <origin rpy="0 0 0" xyz="0.097277 0 0.0095"/>
+          </xacro:if> <!-- arm_type != 'mobile_px100' -->
+        </xacro:unless> <!-- not robot_model_var.startswith('locobotcmu') -->
+        
         <parent link="${robot_name}/plate_link"/>
         <child link="${robot_name}/arm_base_link"/>
       </joint>

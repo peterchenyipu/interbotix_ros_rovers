@@ -19,6 +19,7 @@
   <xacro:property name="base_type"        value="$(arg base_model)"/>
   <xacro:property name="urdf_loc"         value="$(arg external_urdf_loc)"/>
   <xacro:property name="pi_offset"        value="0.00001"/>
+  <xacro:property name="robot_model_var"  value="$(arg robot_model)"/>
 
   <xacro:if value="${urdf_loc != ''}">
     <xacro:include filename="${urdf_loc}"/>
@@ -53,280 +54,179 @@
   </xacro:if> <!-- create3 -->
 
   <!-- ********************************** Plate **********************************  -->
+  <xacro:if value="${robot_model_var.startswith('locobotcmu')}">
+    <xacro:locobotcmu_plate/>
+  </xacro:if> <!-- robot_model.startswith('locobotcmu_wx200') -->
 
-  <xacro:if value="${base_type == 'kobuki'}">
+  <xacro:unless value="${robot_model_var.startswith('locobotcmu')}">
+    <xacro:if value="${base_type == 'kobuki'}">
 
-    <xacro:plate>
-      <origin
-        rpy="0 0 0"
-        xyz="0.0 0 0.08825"/>
-      <inertial>
+      <xacro:plate>
         <origin
           rpy="0 0 0"
-          xyz="0.050816 0 0.00475"/>
-        <mass value="0.571995"/>
-        <inertia
-          ixx="0.003115"
-          ixy="0"
-          ixz="0"
-          iyy="0.001813"
-          iyz="0"
-          izz="0.004919"/>
-      </inertial>
-    </xacro:plate>
+          xyz="0.0 0 0.08825"/>
+        <inertial>
+          <origin
+            rpy="0 0 0"
+            xyz="0.050816 0 0.00475"/>
+          <mass value="0.571995"/>
+          <inertia
+            ixx="0.003115"
+            ixy="0"
+            ixz="0"
+            iyy="0.001813"
+            iyz="0"
+            izz="0.004919"/>
+        </inertial>
+      </xacro:plate>
 
-  </xacro:if> <!-- base_type == 'kobuki' -->
+    </xacro:if> <!-- base_type == 'kobuki' -->
 
-  <xacro:if value="${base_type == 'create3'}">
+    <xacro:if value="${base_type == 'create3'}">
 
-    <xacro:plate>
-      <origin
-        rpy="0 0 0"
-        xyz="0 0 0.0934"/>
-      <inertial>
+      <xacro:plate>
         <origin
           rpy="0 0 0"
-          xyz="-0.005869 0 4.67E-03"/>
-        <mass value="0.807674"/>
-        <inertia
-          ixx="5.27E-03"
-          ixy="0"
-          ixz="0"
-          iyy="3.27E-03"
-          iyz="0"
-          izz="8.54E-03"/>
-      </inertial>
-    </xacro:plate>
+          xyz="0 0 0.0934"/>
+        <inertial>
+          <origin
+            rpy="0 0 0"
+            xyz="-0.005869 0 4.67E-03"/>
+          <mass value="0.807674"/>
+          <inertia
+            ixx="5.27E-03"
+            ixy="0"
+            ixz="0"
+            iyy="3.27E-03"
+            iyz="0"
+            izz="8.54E-03"/>
+        </inertial>
+      </xacro:plate>
 
-  </xacro:if> <!-- base_type == 'create3' -->
+    </xacro:if> <!-- base_type == 'create3' -->
+  </xacro:unless> <!-- !robot_model_var.startswith('locobotcmu_wx200') -->
 
   <!-- ********************************** Arm ********************************** -->
+  <xacro:if value="${robot_model_var.startswith('locobotcmu')}">
+    <xacro:if value="${arm_type != 'mobile_base'}">
 
-  <xacro:if value="${arm_type != 'mobile_base'}">
+      <xacro:include filename="$(find interbotix_xslocobot_descriptions)/urdf/arms/mobile_arm.urdf.xacro"/>
 
-    <xacro:include filename="$(find interbotix_xslocobot_descriptions)/urdf/arms/mobile_arm.urdf.xacro"/>
+      <xacro:mobile_arm/>
+    </xacro:if> <!-- arm_type != 'mobile_base' -->
+  </xacro:if> <!-- robot_model.startswith('locobotcmu_wx200') -->
 
-    <xacro:mobile_arm/>
+  <xacro:unless value="${robot_model_var.startswith('locobotcmu')}">
+    <xacro:if value="${arm_type != 'mobile_base'}">
 
-    <xacro:if value="${arm_type == 'mobile_wx200'}">
+      <xacro:include filename="$(find interbotix_xslocobot_descriptions)/urdf/arms/mobile_arm.urdf.xacro"/>
 
-      <xacro:if value="${base_type == 'kobuki'}">
+      <xacro:mobile_arm/>
 
-        <xacro:arm_cradle>
-          <origin
-            rpy="0 0 0"
-            xyz="0.0215 0 0.1195"/>
-        </xacro:arm_cradle>
+      <xacro:if value="${arm_type == 'mobile_wx200'}">
 
-      </xacro:if> <!-- base_type == 'kobuki' -->
+        <xacro:if value="${base_type == 'kobuki'}">
 
-      <xacro:if value="${base_type == 'create3'}">
+          <xacro:arm_cradle>
+            <origin
+              rpy="0 0 0"
+              xyz="0.0215 0 0.1195"/>
+          </xacro:arm_cradle>
 
-        <xacro:arm_cradle>
-          <origin
-            rpy="0 0 0"
-            xyz="0.037943 0 0.139"/>
-        </xacro:arm_cradle>
+        </xacro:if> <!-- base_type == 'kobuki' -->
 
-      </xacro:if> <!-- base_type == 'create3' -->
+        <xacro:if value="${base_type == 'create3'}">
 
-    </xacro:if> <!-- arm_type == 'mobile_wx200' -->
+          <xacro:arm_cradle>
+            <origin
+              rpy="0 0 0"
+              xyz="0.037943 0 0.139"/>
+          </xacro:arm_cradle>
 
-  </xacro:if> <!-- arm_type != 'mobile_base' -->
+        </xacro:if> <!-- base_type == 'create3' -->
+
+      </xacro:if> <!-- arm_type == 'mobile_wx200' -->
+
+    </xacro:if> <!-- arm_type != 'mobile_base' -->
+  </xacro:unless> <!-- !robot_model.startswith('locobotcmu_wx200') -->
+  
 
   <!-- ********************************** Battery **********************************  -->
+  <xacro:if value="${robot_model_var.startswith('locobotcmu')}">
+    <!-- Currently no battery for CMU locobot -->
+    <!-- TODO: add battery in the future -->
+  </xacro:if> <!-- robot_model.startswith('locobotcmu_wx200') -->
 
-  <xacro:if value="${base_type == 'kobuki'}">
-    <xacro:battery>
-      <origin
-        rpy="0 0 0"
-        xyz="-0.007 0 0.0125"/>
-    </xacro:battery>
-  </xacro:if> <!-- base_type == 'kobuki' -->
+  <xacro:unless value="${robot_model_var.startswith('locobotcmu')}">
+    <xacro:if value="${base_type == 'kobuki'}">
+      <xacro:battery>
+        <origin
+          rpy="0 0 0"
+          xyz="-0.007 0 0.0125"/>
+      </xacro:battery>
+    </xacro:if> <!-- base_type == 'kobuki' -->
 
-  <xacro:if value="${base_type == 'create3'}">
-    <xacro:battery>
-      <origin
-        rpy="0 0 0"
-        xyz="-0.0345 0 0.010763"/>
-    </xacro:battery>
-  </xacro:if> <!-- base_type == 'create3' -->
+    <xacro:if value="${base_type == 'create3'}">
+      <xacro:battery>
+        <origin
+          rpy="0 0 0"
+          xyz="-0.0345 0 0.010763"/>
+      </xacro:battery>
+    </xacro:if> <!-- base_type == 'create3' -->
+  </xacro:unless> <!-- !robot_model.startswith('locobotcmu_wx200') -->
+
 
   <!-- ********************************** Camera Tower **********************************  -->
+  <xacro:if value="${robot_model_var.startswith('locobotcmu')}">
+    <xacro:locobotcmu_camera_tower/>
+  </xacro:if> <!-- robot_model.startswith('locobotcmu_wx200') -->
 
-  <xacro:if value="${base_type == 'kobuki'}">
-
-    <xacro:if value="${camera_tower_size == 'large'}">
-
-      <xacro:camera_tower>
-        <origin
-          rpy="0 0 0"
-          xyz="-0.023997 -0.000044 0.08823"/>
-        <inertial>
-          <origin
-            rpy="0 0 0"
-            xyz="-0.0372211000 -0.0026114300 0.1744600000"/>
-          <mass value="2.366224"/>
-          <inertia
-            ixx="0.0628500000"
-            ixy="0.0002152000"
-            ixz="0.0065630000"
-            iyy="0.0546000000"
-            iyz="-0.0004738000"
-            izz="0.0179300000"/>
-        </inertial>
-      </xacro:camera_tower>
-
-    </xacro:if> <!-- base_type == 'kobuki' && camera_tower_size == 'large' -->
-
-    <xacro:if value="${camera_tower_size == 'small'}">
-
-      <xacro:camera_tower>
-        <origin
-          rpy="0 0 0"
-          xyz="-0.023997 -0.000044 0.08823"/>
-        <inertial>
-          <origin
-            rpy="0 0 0"
-            xyz="-0.0357703000 -0.0027068600 0.1560470000"/>
-          <mass value="2.282808"/>
-          <inertia
-            ixx="0.0461600000"
-            ixy="0.0002062000"
-            ixz="0.0052560000"
-            iyy="0.0384200000"
-            iyz="-0.0003600000"
-            izz="0.0169600000"/>
-        </inertial>
-      </xacro:camera_tower>
-
-    </xacro:if> <!-- base_type == 'kobuki' && camera_tower_size == 'small' -->
-
-  </xacro:if> <!-- base_type == 'kobuki' -->
-
-  <xacro:if value="${base_type == 'create3'}">
-
-    <xacro:if value="${camera_tower_size == 'large'}">
-
-      <xacro:camera_tower>
-        <origin
-          rpy="0 0 0"
-          xyz="-0.048271 0 0.10087"/>
-        <inertial>
-          <origin
-            rpy="0 0 0"
-            xyz="-0.025958 -0.003319 0.205872"/>
-          <mass value="2.514064"/>
-          <inertia
-            ixx="7.61E-02"
-            ixy="1.47E-04"
-            ixz="7.04E-03"
-            iyy="6.71E-02"
-            iyz="-9.41E-04"
-            izz="1.95E-02"/>
-        </inertial>
-      </xacro:camera_tower>
-
-    </xacro:if> <!-- base_type == 'create3' && camera_tower_size == 'large' -->
-
-    <xacro:if value="${camera_tower_size == 'small'}">
-
-      <xacro:camera_tower>
-        <origin
-          rpy="0 0 0"
-          xyz="-0.048271 0 0.10087"/>
-        <inertial>
-          <origin
-            rpy="0 0 0"
-            xyz="-0.024689 -0.003432 0.185408"/>
-          <mass value="2.430647"/>
-          <inertia
-            ixx="5.63E-02"
-            ixy="1.37E-04"
-            ixz="5.75E-03"
-            iyy="4.78E-02"
-            iyz="-7.70E-04"
-            izz="1.86E-02"/>
-        </inertial>
-      </xacro:camera_tower>
-
-    </xacro:if> <!-- base_type == 'create3' && camera_tower_size == 'small' -->
-
-  </xacro:if> <!-- base_type == 'create3' -->
-
-  <!-- ********************************** Pan & Tilt **********************************  -->
-
-  <xacro:if value="${base_type == 'kobuki'}">
-
-    <xacro:if value="${camera_tower_size == 'large'}">
-
-      <xacro:pan_and_tilt>
-        <origin
-          rpy="0 0 0"
-          xyz="0.047228 0 0.44425"/>
-      </xacro:pan_and_tilt>
-
-    </xacro:if> <!-- base_type == 'kobuki' && camera_tower_size == 'large' -->
-
-    <xacro:if value="${camera_tower_size == 'small'}">
-
-      <xacro:pan_and_tilt>
-        <origin
-          rpy="0 0 0"
-          xyz="0.047228 0 0.38425"/>
-      </xacro:pan_and_tilt>
-
-    </xacro:if> <!-- base_type == 'kobuki' && camera_tower_size == 'small' -->
-
-  </xacro:if> <!-- base_type == 'kobuki' -->
-
-  <xacro:if value="${base_type == 'create3'}">
-
-    <xacro:if value="${camera_tower_size == 'large'}">
-
-      <xacro:pan_and_tilt>
-        <origin
-          rpy="0 0 0"
-          xyz="0.061228 0 0.462"/>
-      </xacro:pan_and_tilt>
-
-    </xacro:if> <!-- base_type == 'create3' && camera_tower_size == 'large' -->
-
-    <xacro:if value="${camera_tower_size == 'small'}">
-
-      <xacro:pan_and_tilt>
-        <origin
-          rpy="0 0 0"
-          xyz="0.061228 0 0.402"/>
-      </xacro:pan_and_tilt>
-
-    </xacro:if> <!-- base_type == 'create3' && camera_tower_size == 'small' -->
-
-  </xacro:if> <!-- base_type == 'create3' -->
-
-  <!-- ********************************** Lidar **********************************  -->
-
-  <xacro:if value="$(arg use_lidar)">
-
+  <xacro:unless value="${robot_model_var.startswith('locobotcmu')}">
     <xacro:if value="${base_type == 'kobuki'}">
 
       <xacro:if value="${camera_tower_size == 'large'}">
 
-        <xacro:lidar>
+        <xacro:camera_tower>
           <origin
             rpy="0 0 0"
-            xyz="-0.074 0 0.44425"/>
-        </xacro:lidar>
+            xyz="-0.023997 -0.000044 0.08823"/>
+          <inertial>
+            <origin
+              rpy="0 0 0"
+              xyz="-0.0372211000 -0.0026114300 0.1744600000"/>
+            <mass value="2.366224"/>
+            <inertia
+              ixx="0.0628500000"
+              ixy="0.0002152000"
+              ixz="0.0065630000"
+              iyy="0.0546000000"
+              iyz="-0.0004738000"
+              izz="0.0179300000"/>
+          </inertial>
+        </xacro:camera_tower>
 
       </xacro:if> <!-- base_type == 'kobuki' && camera_tower_size == 'large' -->
 
       <xacro:if value="${camera_tower_size == 'small'}">
 
-        <xacro:lidar>
+        <xacro:camera_tower>
           <origin
             rpy="0 0 0"
-            xyz="-0.074 0 0.38425"/>
-        </xacro:lidar>
+            xyz="-0.023997 -0.000044 0.08823"/>
+          <inertial>
+            <origin
+              rpy="0 0 0"
+              xyz="-0.0357703000 -0.0027068600 0.1560470000"/>
+            <mass value="2.282808"/>
+            <inertia
+              ixx="0.0461600000"
+              ixy="0.0002062000"
+              ixz="0.0052560000"
+              iyy="0.0384200000"
+              iyz="-0.0003600000"
+              izz="0.0169600000"/>
+          </inertial>
+        </xacro:camera_tower>
 
       </xacro:if> <!-- base_type == 'kobuki' && camera_tower_size == 'small' -->
 
@@ -336,26 +236,171 @@
 
       <xacro:if value="${camera_tower_size == 'large'}">
 
-        <xacro:lidar>
+        <xacro:camera_tower>
           <origin
             rpy="0 0 0"
-            xyz="-0.066095 0 0.462"/>
-        </xacro:lidar>
+            xyz="-0.048271 0 0.10087"/>
+          <inertial>
+            <origin
+              rpy="0 0 0"
+              xyz="-0.025958 -0.003319 0.205872"/>
+            <mass value="2.514064"/>
+            <inertia
+              ixx="7.61E-02"
+              ixy="1.47E-04"
+              ixz="7.04E-03"
+              iyy="6.71E-02"
+              iyz="-9.41E-04"
+              izz="1.95E-02"/>
+          </inertial>
+        </xacro:camera_tower>
 
       </xacro:if> <!-- base_type == 'create3' && camera_tower_size == 'large' -->
 
       <xacro:if value="${camera_tower_size == 'small'}">
 
-        <xacro:lidar>
+        <xacro:camera_tower>
           <origin
             rpy="0 0 0"
-            xyz="-0.066095 0 0.402"/>
-        </xacro:lidar>
+            xyz="-0.048271 0 0.10087"/>
+          <inertial>
+            <origin
+              rpy="0 0 0"
+              xyz="-0.024689 -0.003432 0.185408"/>
+            <mass value="2.430647"/>
+            <inertia
+              ixx="5.63E-02"
+              ixy="1.37E-04"
+              ixz="5.75E-03"
+              iyy="4.78E-02"
+              iyz="-7.70E-04"
+              izz="1.86E-02"/>
+          </inertial>
+        </xacro:camera_tower>
 
       </xacro:if> <!-- base_type == 'create3' && camera_tower_size == 'small' -->
 
     </xacro:if> <!-- base_type == 'create3' -->
+  </xacro:unless> <!-- !robot_model.startswith('locobotcmu_wx200') -->
+    
 
-  </xacro:if> <!-- use_lidar -->
+  <!-- ********************************** Pan & Tilt **********************************  -->
+  <xacro:if value="${robot_model_var.startswith('locobotcmu')}">
+    <xacro:pan_and_tilt>
+      <origin
+            rpy="0 0 0"
+            xyz="0.047228 0 0.44425"/>
+    </xacro:pan_and_tilt>
+  </xacro:if> <!-- robot_model.startswith('locobotcmu_wx200') -->
+
+  <xacro:unless value="${robot_model_var.startswith('locobotcmu')}">
+    <xacro:if value="${base_type == 'kobuki'}">
+
+      <xacro:if value="${camera_tower_size == 'large'}">
+
+        <xacro:pan_and_tilt>
+          <origin
+            rpy="0 0 0"
+            xyz="0.047228 0 0.44425"/>
+        </xacro:pan_and_tilt>
+
+      </xacro:if> <!-- base_type == 'kobuki' && camera_tower_size == 'large' -->
+
+      <xacro:if value="${camera_tower_size == 'small'}">
+
+        <xacro:pan_and_tilt>
+          <origin
+            rpy="0 0 0"
+            xyz="0.047228 0 0.38425"/>
+        </xacro:pan_and_tilt>
+
+      </xacro:if> <!-- base_type == 'kobuki' && camera_tower_size == 'small' -->
+
+    </xacro:if> <!-- base_type == 'kobuki' -->
+
+    <xacro:if value="${base_type == 'create3'}">
+
+      <xacro:if value="${camera_tower_size == 'large'}">
+
+        <xacro:pan_and_tilt>
+          <origin
+            rpy="0 0 0"
+            xyz="0.061228 0 0.462"/>
+        </xacro:pan_and_tilt>
+
+      </xacro:if> <!-- base_type == 'create3' && camera_tower_size == 'large' -->
+
+      <xacro:if value="${camera_tower_size == 'small'}">
+
+        <xacro:pan_and_tilt>
+          <origin
+            rpy="0 0 0"
+            xyz="0.061228 0 0.402"/>
+        </xacro:pan_and_tilt>
+
+      </xacro:if> <!-- base_type == 'create3' && camera_tower_size == 'small' -->
+
+    </xacro:if> <!-- base_type == 'create3' -->
+  </xacro:unless> <!-- !robot_model.startswith('locobotcmu_wx200') -->
+    
+
+  <!-- ********************************** Lidar **********************************  -->
+  <xacro:if value="${robot_model_var.startswith('locobotcmu')}">
+
+  </xacro:if> <!-- robot_model.startswith('locobotcmu_wx200') -->
+
+  <xacro:unless value="${robot_model_var.startswith('locobotcmu')}">
+    <xacro:if value="$(arg use_lidar)">
+
+      <xacro:if value="${base_type == 'kobuki'}">
+
+        <xacro:if value="${camera_tower_size == 'large'}">
+
+          <xacro:lidar>
+            <origin
+              rpy="0 0 0"
+              xyz="-0.074 0 0.44425"/>
+          </xacro:lidar>
+
+        </xacro:if> <!-- base_type == 'kobuki' && camera_tower_size == 'large' -->
+
+        <xacro:if value="${camera_tower_size == 'small'}">
+
+          <xacro:lidar>
+            <origin
+              rpy="0 0 0"
+              xyz="-0.074 0 0.38425"/>
+          </xacro:lidar>
+
+        </xacro:if> <!-- base_type == 'kobuki' && camera_tower_size == 'small' -->
+
+      </xacro:if> <!-- base_type == 'kobuki' -->
+
+      <xacro:if value="${base_type == 'create3'}">
+
+        <xacro:if value="${camera_tower_size == 'large'}">
+
+          <xacro:lidar>
+            <origin
+              rpy="0 0 0"
+              xyz="-0.066095 0 0.462"/>
+          </xacro:lidar>
+
+        </xacro:if> <!-- base_type == 'create3' && camera_tower_size == 'large' -->
+
+        <xacro:if value="${camera_tower_size == 'small'}">
+
+          <xacro:lidar>
+            <origin
+              rpy="0 0 0"
+              xyz="-0.066095 0 0.402"/>
+          </xacro:lidar>
+
+        </xacro:if> <!-- base_type == 'create3' && camera_tower_size == 'small' -->
+
+      </xacro:if> <!-- base_type == 'create3' -->
+
+    </xacro:if> <!-- use_lidar -->
+  </xacro:unless> <!-- !robot_model.startswith('locobotcmu_wx200') -->
 
 </robot>
