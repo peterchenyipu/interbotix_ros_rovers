@@ -75,7 +75,12 @@
       <origin
         rpy="0 0 0"
         xyz="0.01 0 0"/>
-      <mass value="2.4"/>
+      <xacro:if value="${robot_model_var.startswith('locobotcmu')}">
+        <mass value="5"/> <!-- original 2.4/2.6 changed temporarily-->
+      </xacro:if>
+      <xacro:unless value="${robot_model_var.startswith('locobotcmu')}">
+        <mass value="2.4"/>
+      </xacro:unless>
       <inertia
         ixx="0.019995"
         ixy="0.0"
