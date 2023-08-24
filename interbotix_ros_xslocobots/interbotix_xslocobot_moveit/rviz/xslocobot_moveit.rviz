@@ -140,7 +140,7 @@ Visualization Manager:
   Enabled: true
   Global Options:
     Background Color: 0; 176; 240
-    Fixed Frame: base_link
+    Fixed Frame: locobot/base_link
     Frame Rate: 30
   Name: root
   Tools:
