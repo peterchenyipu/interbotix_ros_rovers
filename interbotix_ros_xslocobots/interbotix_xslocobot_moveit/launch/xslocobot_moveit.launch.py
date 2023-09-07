@@ -42,6 +42,8 @@ from launch.actions import (
     DeclareLaunchArgument,
     IncludeLaunchDescription,
     OpaqueFunction,
+    ExecuteProcess,
+    RegisterEventHandler
 )
 from launch.conditions import IfCondition, LaunchConfigurationEquals
 from launch.launch_description_sources import PythonLaunchDescriptionSource
@@ -52,9 +54,10 @@ from launch.substitutions import (
     PythonExpression,
     TextSubstitution,
 )
-from launch_ros.actions import Node
+from launch_ros.actions import Node, RosTimer
 from launch_ros.parameter_descriptions import ParameterValue
 from launch_ros.substitutions import FindPackageShare
+from launch.event_handlers import OnExecutionComplete
 import yaml
 
 
@@ -288,11 +291,32 @@ def launch_setup(context, *args, **kwargs):
         ),
     )
 
+    disable_motors = ExecuteProcess(
+        cmd=[[
+            'ros2 service call /locobot/torque_enable interbotix_xs_msgs/srv/TorqueEnable "{cmd_type: group, name: arm, enable: False}"'
+        ]],
+        shell=True
+    )
+    enable_motors = ExecuteProcess(
+        cmd=[[
+            'ros2 service call /locobot/torque_enable interbotix_xs_msgs/srv/TorqueEnable "{cmd_type: group, name: arm, enable: True}"'
+        ]],
+        shell=True
+    )
+
     return [
+        # RegisterEventHandler(
+        #     event_handler=OnExecutionComplete(
+        #         target_action=xslocobot_ros_control_launch_include,
+        #         on_completion=enable_motors
+        #     )
+        # ),
         move_group_node,
         moveit_rviz_node,
         xslocobot_ros_control_launch_include,
         xslocobot_gz_classic_launch_include,
+        disable_motors,
+        # RosTimer(period=10.0, actions=[enable_motors])
     ]
 
 
