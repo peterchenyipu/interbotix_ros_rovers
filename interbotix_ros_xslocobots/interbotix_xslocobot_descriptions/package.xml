@@ -17,6 +17,7 @@
   <depend>robot_state_publisher</depend>
   <depend>rviz2</depend>
   <depend>xacro</depend>
+  <depend>realsense2_description</depend>
   <depend condition="$INTERBOTIX_XSLOCOBOT_BASE_TYPE == kobuki">kobuki_description</depend>
   <depend condition="$INTERBOTIX_XSLOCOBOT_BASE_TYPE == create3">irobot_create_description</depend>
 
